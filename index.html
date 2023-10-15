@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>API Calling with jQuery</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"
+      rel="stylesheet"
+    />
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+  </head>
+  <body>
+    <!-- model-1  -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">BooK View</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label"
+                  >Email address</label
+                >
+                <input
+                  type="email"
+                  class="form-control"
+                  id="exampleInputEmail1"
+                  aria-describedby="emailHelp"
+                />
+                <div id="emailHelp" class="form-text">
+                  We'll never share your email with anyone else.
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label"
+                  >Password</label
+                >
+                <input
+                  type="password"
+                  class="form-control"
+                  id="exampleInputPassword1"
+                />
+              </div>
+              <div class="mb-3 form-check">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  id="exampleCheck1"
+                />
+                <label class="form-check-label" for="exampleCheck1"
+                  >Check me out</label
+                >
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- model-2  -->
+    <div
+      class="modal fade"
+      id="exampleModal2"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="exampleInputId" class="form-label">Id</label>
+                <input
+                  type="text"
+                  class="form-control a_id"
+                  id="exampleInputId"
+                  aria-describedby="emailHelp"
+                />
+                <div id="emailHelp" class="form-text"></div>
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputName" class="form-label">Name</label>
+                <input
+                  type="text"
+                  class="form-control a_name"
+                  id="exampleInputName"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputEmail2" class="form-label"
+                  >Email address</label
+                >
+                <input
+                  type="email"
+                  class="form-control a_email"
+                  id="exampleInputEmail2"
+                  aria-describedby="emailHelp"
+                />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary a_update">
+              Update changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn btn-success a_getdata">Get</button>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <script>
+      var Id = "";
+      toastr.options = {
+        closeButton: false,
+        debug: false,
+        newestOnTop: false,
+        progressBar: true,
+        positionClass: "toast-top-right",
+        preventDuplicates: false,
+        onclick: null,
+        showDuration: "300",
+        hideDuration: "1000",
+        timeOut: "10000",
+        extendedTimeOut: "1000",
+        showEasing: "swing",
+        hideEasing: "linear",
+        showMethod: "fadeIn",
+        hideMethod: "fadeOut",
+      };
+      var myurlobj = {
+        url: "http://localhost:1337/api/client-managements/",
+        type: "GET",
+      };
+      $(".a_getdata").on("click", function () {
+        $.ajax({
+          ...myurlobj, // ... spread Operator
+          url: myurlobj.url, //Prev Value reuse
+          beforeSend: function () {},
+          success: function (result, status, xhr) {
+            // console.log(result);
+            var tr = ``;
+            result.data.forEach((element) => {
+              tr +=
+                `<tr>
+                                            <td>` +
+                element.id +
+                `</td>
+                                            <td>` +
+                element.attributes.Name +
+                `</td>
+                                            <td>` +
+                element.attributes.Email +
+                `</td>
+                                            <td>
+                                                <button class="btn btn-sm btn-success a_viewbtn" data-bs-toggle="modal" data-bs-target="#exampleModal">View</button>
+                                                <button class="btn btn-sm btn-info a_editbtn" data-bs-toggle="modal" data-bs-target="#exampleModal2">EDIT</button>
+                                                <button class="btn btn-sm btn-danger a_delbtn">Delete</button>
+                                            </td>
+                                        </tr>`;
+            });
+            //console.log(tr);
+            $("table > tbody").html(tr);
+          },
+          error: function () {
+            console.log("error");
+          },
+          complete: function () {},
+        });
+      });
+      // This teqniuque is For Dynamic generated element
+
+      $(document).on("click", function (e) {
+        // console.log(e.target.classList.contains("a_editbtn"));
+        if ($(e.target).hasClass("a_editbtn")) {
+          // console.log("yes");
+          Id = $(e.target).closest("tr").find("td:first-child").text();
+          // console.log(Id)
+          let Name = $(e.target).closest("tr").find("td:nth-child(2)").text();
+          // console.log(Name)
+          let Email = $(e.target).closest("tr").find("td:nth-child(3)").text();
+          // console.log(Email)
+          $(".a_id").val(Id); //SET
+          $(".a_name").val(Name);
+          $(".a_email").val(Email);
+          //Finally make a put request to update the record/Db Record/DB Row
+        }
+      });
+      // //This tecqniue is for non dynamic element
+      $(".a_update").on("click", function (e) {
+        e.preventDefault();
+        //Now call the api request
+        //Before calling the api request we must collect all the updated information
+        // let Id = $(".a_id").val(); // Get
+        let name = $(".a_name").val();
+        let email = $(".a_email").val();
+        // console.log(name)
+        var mydata = {
+          data: {
+            Name: name,
+            Email: email,
+            Mobile: 0,
+            Website: "string",
+          },
+        };
+        // console.log(mydata)
+        //Finally make the put request api call
+        $.ajax({
+          ...myurlobj,
+          url: myurlobj.url + Id,
+          type: "PUT", 
+          data: JSON.stringify(mydata),
+          dataType: "json",
+          contentType: "application/json",
+          success: function (result, status, xhr) {
+            console.log(result);
+            swal(
+              "Good job!",
+              "Client information Updated Succefully!",
+              "success"
+            );
+          },
+          error: function (xhr, status, error) {
+            console.log("error " + error);
+          },
+        });
+      });
+    </script>
+  </body>
+</html>
